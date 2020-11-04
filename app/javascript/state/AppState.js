@@ -3,10 +3,12 @@ import { observable, makeObservable, computed } from 'mobx'
 class AppState {
   token = '';
   user = '';
+  userData = {}
   constructor() {
         makeObservable(this, {
             token: observable,
-            user: observable
+            user: observable,
+            userData: observable
         })
     }
 
