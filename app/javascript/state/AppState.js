@@ -13,6 +13,7 @@ class AppState {
   clear() {
     this.token = '';
   }
+
 }
 
 

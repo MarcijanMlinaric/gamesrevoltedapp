@@ -7,11 +7,15 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { App } from '../containers/App'
+import { AdminHome } from '../containers/AdminHome'
+import { UserHome } from '../containers/UserHome'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Router>
-      <Route path='/' component={App} />
+      <Route exact path='/' component={App} />
+      <Route exact path='/admin' component={AdminHome} />
+      <Route exact path='/user' component={UserHome} />
     </Router>,
     document.body.appendChild(document.createElement('div')),
   )
