@@ -6,7 +6,9 @@ function UsersComponent (props) {
 
     return (
         <div>
-        
+            <div>Users:</div>
+            {props.users.map((user) =>
+            <User key={`user-${user.id}`} user={user} />)}
         </div>
     )
 
