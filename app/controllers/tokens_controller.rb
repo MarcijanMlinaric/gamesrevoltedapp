@@ -33,7 +33,7 @@ class TokensController < ApplicationController
             @user.update({balance: @user.balance + 10})
             Log.new({user_id: @current_user.id, action: "User used token"}).save
             @token.destroy
-            render json: UserSerializer.new(@user), status: :ok
+            render json: UserSerializer.new(@user, {include: %i[tokens]}), status: :ok
         else
             render json: {errors: "Unauthorized"}, status: :unauthorized
         end
