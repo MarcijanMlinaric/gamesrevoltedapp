@@ -16,7 +16,7 @@ class TokensController < ApplicationController
             @token = Token.new({token: (0...10).map { (48 + rand(10)).chr }.join, user_id: @current_user.id})
             if @token.save
                 @current_user.update({no_of_tokens: @current_user.no_of_tokens - 1})
-                Log.new({user_id: @current_user.id, action: "User created token"}).save  
+                Log.new({user_id: @current_user.id, action: "created token"}).save  
                 render json: TokenSerializer.new(@token), status: :created
             else
                 render json: { errors: @current_user.errors.full_messages },
@@ -31,7 +31,7 @@ class TokensController < ApplicationController
     def update
         if @current_user == @user && @token.user_id == @user.id
             @user.update({balance: @user.balance + 10})
-            Log.new({user_id: @current_user.id, action: "User used token"}).save
+            Log.new({user_id: @current_user.id, action: "used token"}).save
             @token.destroy
             render json: UserSerializer.new(@user, {include: %i[tokens]}), status: :ok
         else

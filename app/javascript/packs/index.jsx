@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { App } from '../containers/App'
 import { AdminHome } from '../containers/AdminHome'
 import { UserHome } from '../containers/UserHome'
+import { EditUser } from '../containers/EditUser'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <Route exact path='/' component={App} />
       <Route exact path='/admin' component={AdminHome} />
       <Route exact path='/user' component={UserHome} />
+      <Route exact path='/admin/:id' component={EditUser} />
     </Router>,
     document.body.appendChild(document.createElement('div')),
   )

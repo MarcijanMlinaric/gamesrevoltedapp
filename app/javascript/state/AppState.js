@@ -4,14 +4,18 @@ class AppState {
   token = '';
   user = '';
   userData = {}
-  users = []
+  users = ''
+  log = ''
+  userTokens = ''
 
   constructor() {
         makeObservable(this, {
             token: observable,
             user: observable,
             userData: observable,
-            users: observable
+            users: observable,
+            log: observable,
+            userTokens: observable
         })
     }
 

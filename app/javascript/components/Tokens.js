@@ -2,7 +2,7 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import { Token } from './Token'
 
-function TokensContainer (props) {
+function TokensComponent (props) {
 
     return (
         <div>
@@ -15,4 +15,4 @@ function TokensContainer (props) {
 
 }
 
-export const Tokens = observer(TokensContainer)
+export const Tokens = observer(TokensComponent)
