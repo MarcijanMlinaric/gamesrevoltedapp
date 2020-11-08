@@ -12,6 +12,7 @@ class TokensController < ApplicationController
     
     # POST /tokens
     def create
+        Token.where("expires < ?", Time.now).destroy_all
         if @current_user.no_of_tokens != 0
             @token = Token.new({token: (0...10).map { (48 + rand(10)).chr }.join, user_id: @current_user.id, value: 10, expires: Time.now + 1.week.to_i})
             if @token.save
