@@ -8,7 +8,7 @@ function AllTokensComponent(props) {
         <div>
             <div>Tokens:</div>
             {props.tokens.map((token) =>
-                <TokenAdmin key={`token-${token.id}`} token={token}
+                <TokenAdmin key={`token-${token.id}`} token={token}  history={props.history}
             user={props.users.find(({id}) => id == token.attributes.user_id)} />)}
         </div>
     )

@@ -5,8 +5,9 @@ const tokenCreate = (appState) => {
     axios.post(`/tokens`, {}, {headers: {'Authorization': `${appState.user} ${appState.token}`}})
     .then((resp) => 
         runInAction(() => {
-            const tokens = [appState.userData.tokens].push(resp.data.attributes)
+            const tokens = [...appState.userData.tokens, resp.data.data]
             const userData = {attributes: appState.userData.attributes, tokens: tokens}
+            appState.userData = userData
         }))
     .catch((resp) => console.log(resp))
 } 

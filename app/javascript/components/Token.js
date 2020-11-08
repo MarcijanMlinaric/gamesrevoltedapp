@@ -1,9 +1,13 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 
-function TokenComponent (props) {
+function TokenComponent(props) {
     return (
-        <div>{props.token.attributes.token}</div>
+        <div>
+            <div>{props.token.attributes.token}</div>
+            <div>{props.token.attributes.value}</div>
+            <div>{props.token.attributes.expires}</div>
+        </div>
     )
 }
 

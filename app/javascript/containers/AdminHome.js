@@ -53,7 +53,7 @@ function AdminHomeComponent(props) {
                 (tab === "Log" ?
                     (<Log log={appState.log} users={appState.users} />) :
                     (tab === "Tokens" ?
-                        (<AllTokens tokens={appState.userTokens} users={appState.users} />) :
+                        (<AllTokens history={props.history} tokens={appState.userTokens} users={appState.users} />) :
                         (<div></div>)))}
 
         </div>

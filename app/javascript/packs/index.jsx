@@ -10,6 +10,7 @@ import { App } from '../containers/App'
 import { AdminHome } from '../containers/AdminHome'
 import { UserHome } from '../containers/UserHome'
 import { EditUser } from '../containers/EditUser'
+import { EditToken } from '../containers/EditToken'
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
@@ -17,7 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <Route exact path='/' component={App} />
       <Route exact path='/admin' component={AdminHome} />
       <Route exact path='/user' component={UserHome} />
-      <Route exact path='/admin/:id' component={EditUser} />
+      <Route exact path='/admin/user/:id' component={EditUser} />
+      <Route exact path='/admin/token/:id' component={EditToken} />
     </Router>,
     document.body.appendChild(document.createElement('div')),
   )

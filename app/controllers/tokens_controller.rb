@@ -13,7 +13,7 @@ class TokensController < ApplicationController
     # POST /tokens
     def create
         if @current_user.no_of_tokens != 0
-            @token = Token.new({token: (0...10).map { (48 + rand(10)).chr }.join, user_id: @current_user.id})
+            @token = Token.new({token: (0...10).map { (48 + rand(10)).chr }.join, user_id: @current_user.id, value: 10, expires: Time.now + 1.week.to_i})
             if @token.save
                 @current_user.update({no_of_tokens: @current_user.no_of_tokens - 1})
                 Log.new({user_id: @current_user.id, action: "created token"}).save  
@@ -30,16 +30,27 @@ class TokensController < ApplicationController
     # PUT /tokens/{username}
     def update
         if @current_user == @user && @token.user_id == @user.id
-            @user.update({balance: @user.balance + 10})
-            Log.new({user_id: @current_user.id, action: "used token"}).save
-            @token.destroy
-            render json: UserSerializer.new(@user, {include: %i[tokens]}), status: :ok
+            if @token.expires > Time.now
+                @user.update({balance: @user.balance + @token.value})
+                Log.new({user_id: @current_user.id, action: "used token"}).save
+                @token.destroy
+                render json: UserSerializer.new(@user, {include: %i[tokens]}), status: :ok
+            else
+                @token.destroy
+                render json: { errors: "Token has expired"}, status: :method_not_allowed
+            end 
+        elsif @current_user.username == 'admin'
+            if @token.update(token_params)
+                render json: TokenSerializer.new(@token)
+            else 
+                render json: { errors: "Unable to update"}
+            end
         else
             render json: {errors: "Unauthorized"}, status: :unauthorized
         end
     end
   
-    # DELETE /users/{username}
+    # DELETE /tokens/token
     def destroy
       @token.destroy
     end
@@ -68,5 +79,11 @@ class TokensController < ApplicationController
         @token = Token.find_by_token!(params[:token])
         rescue ActiveRecord::RecordNotFound
             render json: { errors: 'Token not found' }, status: :not_found
+    end
+
+    def token_params
+        params.permit(
+         :token, :value, :expires
+          )
     end
 end

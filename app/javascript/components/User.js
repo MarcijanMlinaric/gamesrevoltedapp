@@ -6,7 +6,7 @@ function UserComponent(props) {
 
     const onButtonClick = (e) => {
         e.preventDefault()
-        props.history.push(`/admin/${props.user.id}`)
+        props.history.push(`/admin/user/${props.user.id}`)
     }
 
 

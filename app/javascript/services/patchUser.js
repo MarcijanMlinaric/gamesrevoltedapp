@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { runInAction } from 'mobx'
 
-const tokenUse = (appState, user, noOfTokens, balance) => {
+const patchUser = (appState, user, noOfTokens, balance) => {
     axios.patch(`/users/${user}`, {no_of_tokens : noOfTokens, balance: balance}, {headers: {'Authorization': `${appState.user} ${appState.token}`}})
     .then((resp) => 
         runInAction(() => {
@@ -15,4 +15,4 @@ const tokenUse = (appState, user, noOfTokens, balance) => {
     .catch((resp) => console.log(resp))
 } 
 
-export default tokenUse
+export default patchUser
