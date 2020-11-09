@@ -11,16 +11,20 @@ import tokenUse from '../services/tokenUse'
 
 function UserHomeComponent(props) {
     const { appState } = React.useContext(AppContext);
+    const [errors, setErrors] = useState('');
     
 
     useEffect(() => getUser(appState), [])
 
     const onTokenCreateHandler = (e) => {
         tokenCreate(appState)
+        .catch((resp) => setErrors('Unable to create token'))
     }
 
     const onTokenUseHandler = (token) => {
         tokenUse(appState, token)
+        .catch((resp) => setErrors('Token has expired'))
+        
     }
     
 
@@ -36,6 +40,8 @@ function UserHomeComponent(props) {
                     <TokenCreate onButtonClick={onTokenCreateHandler}/>
                     
                 </div>) : (<div></div>)}
+            {errors ? (
+                <div>{errors}</div>) : <div></div>}
         </div>
     )
 

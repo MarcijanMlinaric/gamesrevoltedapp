@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import { AppContext } from '../state/AppContext'
 import { Switch } from 'react-router-dom'
@@ -10,6 +10,7 @@ import { LoginForm } from '../components/LoginForm'
 
 function AppComponent(props) {
     const { appState } = React.useContext(AppContext);
+    const [errors, setErrors] = useState('')
     
     useEffect(() => {
         if (appState.user === 'admin')
@@ -20,14 +21,16 @@ function AppComponent(props) {
     
     const onLoginButtonHandler = (e) => {
         login(e.target[0].value, e.target[1].value, appState)
+        .catch((resp) => setErrors(resp))
                
     } 
 
+    
 
     return (
         <div>
             <LoginForm onLoginButton={onLoginButtonHandler}/>
-            {appState.token === 'Invalid credentials' ? 
+            {errors ? 
                 (<div>Invalid credentials</div>) : (<div></div>)}
         </div>
     )
