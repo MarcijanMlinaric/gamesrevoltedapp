@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import styles from '../styles/AdminHome.module.css'
 
 function TokenAdminComponent(props) {
 
@@ -10,13 +11,12 @@ function TokenAdminComponent(props) {
 
 
     return (
-        <div>
-            <div>{props.user.attributes.username}</div>
-            <div>{props.token.attributes.token}</div>
-            <div>{props.token.attributes.value}</div>
-            <div>{props.token.attributes.expires}</div>
-            <button onClick={onButtonClick}>Edit token</button>
-            <div>---------------------</div>
+        <div className={styles.token}>
+            <div className={styles.code}>{props.token.attributes.token}</div>
+            <div className={styles.userToken}>Onwer: {props.user.attributes.username}</div>
+            <div className={styles.value}>Value: {props.token.attributes.value}</div>
+            <div className={styles.expires}>Expires: {props.token.attributes.expires}</div>
+            <button className={styles.button} onClick={onButtonClick}>Edit token</button>
         </div>
     )
 

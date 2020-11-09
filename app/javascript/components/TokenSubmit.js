@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import styles from '../styles/UserHome.module.css'
 
 function TokenSubmitComponent (props) {
     
@@ -11,9 +12,9 @@ function TokenSubmitComponent (props) {
 
 
     return (
-        <form onSubmit={onSubmitHandler}>
-            <input type="text" pattern='[0-9]*' minLength={10} maxLength={10} placeholder="TOKEN ID"/>
-            <button type='submit'>Activate token</button>
+        <form className={styles.submitForm} onSubmit={onSubmitHandler}>
+            <input className={styles.formInput} type="text" pattern='[0-9]*' minLength={10} maxLength={10} placeholder="TOKEN ID"/>
+            <button className={styles.submitButton} type='submit'>Activate token</button>
         </form>
         
     )

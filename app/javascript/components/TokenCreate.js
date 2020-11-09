@@ -1,5 +1,6 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import styles from '../styles/UserHome.module.css'
 
 function TokenCreateComponent (props) {
 
@@ -8,7 +9,7 @@ function TokenCreateComponent (props) {
     }
 
     return (
-        <button onClick={onButtonClickHandler}>GENERATE NEW TOKEN</button>
+        <button className={styles.createButton} onClick={onButtonClickHandler}>GENERATE NEW TOKEN</button>
     )
 
 }

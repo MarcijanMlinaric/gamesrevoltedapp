@@ -1,7 +1,8 @@
 import React from 'react'
 import { observer } from 'mobx-react'
+import styles from '../styles/AdminHome.module.css'
 
-function CreateUserFormComponent (props) {
+function CreateUserFormComponent(props) {
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -9,12 +10,12 @@ function CreateUserFormComponent (props) {
     }
 
     return (
-        <form onSubmit={onSubmitHandler}>
-            <input placeholder='Username' />
-            <input placeholder='Password' />
-            <input defaultValue={10} placeholder='Number of allowed tokens' />
-            <input defaultValue={0} placeholder='Balance' />
-            <button type="submit">Create user</button>
+        <form className={styles.createForm} onSubmit={onSubmitHandler}>
+            <input className={styles.createUsername} placeholder='Username' />
+            <input className={styles.createPassword} placeholder='Password' />
+            <input className={styles.createNoOfTokens} placeholder='Number of allowed tokens' />
+            <input className={styles.createBalance} placeholder='Balance' />
+            <button id={styles.button} type="submit">Create user</button>
         </form>
 
     )

@@ -1,0 +1,123 @@
+.mainDiv {
+    background-color: rgb(241, 241, 241);
+    border-radius: 8px;
+}
+
+.userHomeContainer {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-rows: 30px, 60px, 60px, 1fr;
+    margin: 0 160px;
+}
+
+.welcome {
+    grid-row: 1;
+    font-size: 30px;
+    font-weight: bold;
+    color:white;
+    background-color: rgb(10, 22, 120);
+    border-radius: 8px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+}
+
+.infoContainer {
+    background-color: white;
+    grid-row: 2;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+}
+
+.submitContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 5px 10px;
+}
+
+.createContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 5px 10px;
+}
+
+
+.balance {
+    grid-row: 1;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgb(10, 22, 120);
+}
+
+.submitForm {
+    grid-row: 2;
+}
+
+.tokensLeft {
+    grid-row: 1; 
+    font-weight: bold;
+    font-size: 16px;
+    color: rgb(10, 22, 120);
+    margin-left: 5px; 
+}
+
+.formInput {
+    border-radius: 6px;
+    border-color: black;
+    height: 40px;
+    width: 250px;
+}
+
+.createButton {
+    grid-row: 2;
+    border-radius: 4px;
+    border: 1px solid black;
+    background-color: lightblue;
+    color: black;
+    height: 40px;
+
+}
+
+.submitButton {
+    border-radius: 4px;
+    border: 1px solid black;
+    background-color: lightblue;
+    color: black;
+    height: 38px;
+    margin-left: 5px;
+}
+
+.tokensComponent {
+    background-color: white;
+    grid-row: 4;
+    display: grid;
+    grid-gap: 5px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.token {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 0 5px;
+    padding: 10px 5px;
+}
+
+.code {
+    grid-column: 1;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.value {
+    grid-column: 2;
+    font-size: 16px;
+}
+
+.expires {
+    grid-column: 3;
+    font-size: 16px;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import { observer } from 'mobx-react'
 import { AppContext } from '../state/AppContext'
+import { AllTokens } from '../components/AllTokens'
 import patchUser from '../services/patchUser'
 
 
@@ -22,12 +23,12 @@ function EditUserComponent(props) {
             setButton('Save')
         } else {
             patchUser(appState, user.attributes.username,
-            e.target[0].value, e.target[1].value)
+                e.target[0].value, e.target[1].value)
             setButton('Edit')
         }
     }
 
-    
+   
 
     return (
         <div>
@@ -37,11 +38,15 @@ function EditUserComponent(props) {
                     <div>{user.attributes.username}</div>
                     <form onSubmit={onFormSubmit}>
                         <div>Number of allowed tokens</div>
-                        <input defaultValue={user.attributes.no_of_tokens} disabled={button==='Edit'} />
+                        <input defaultValue={user.attributes.no_of_tokens} disabled={button === 'Edit'} />
                         <div>Balance</div>
-                        <input defaultValue={user.attributes.balance} disabled={button==='Edit'} />
+                        <input defaultValue={user.attributes.balance} disabled={button === 'Edit'} />
                         <button type="submit">{button}</button>
-                    </form></div>
+                    </form>
+                    <AllTokens history={props.history} 
+                        tokens={appState.userTokens.filter((token) => token.attributes.user_id = user.id)} 
+                        users={appState.users} />
+                </div>
                 ) :
                 (<div></div>)}
         </div>

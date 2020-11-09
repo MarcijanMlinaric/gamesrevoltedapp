@@ -9,6 +9,7 @@ import getUsersAdmin from '../services/getUsersAdmin'
 import getLog from '../services/getLog'
 import getTokens from '../services/getTokens'
 import createUser from '../services/createUser'
+import styles from '../styles/AdminHome.module.css'
 
 
 function AdminHomeComponent(props) {
@@ -32,30 +33,33 @@ function AdminHomeComponent(props) {
     }
 
     return (
-        <div>
-            <button onClick={onButtonClickHandler}
-                value="Users"
-                disabled={tab === "Users"}>
-                Users
+        <div className={styles.mainDiv}>
+            <div className={styles.welcome}>Welcome admin</div>
+            <div className={styles.adminHomeContainer}>
+                <button className={styles.navButton} onClick={onButtonClickHandler}
+                    value="Users"
+                    disabled={tab === "Users"}>
+                    Users
             </button>
-            <button onClick={onButtonClickHandler}
-                value="Log"
-                disabled={tab === "Log"}>
-                Log
+                <button className={styles.navButton} onClick={onButtonClickHandler}
+                    value="Log"
+                    disabled={tab === "Log"}>
+                    Log
             </button>
-            <button onClick={onButtonClickHandler}
-                value="Tokens"
-                disabled={tab === "Tokens"}>
-                Tokens
+                <button className={styles.navButton} onClick={onButtonClickHandler}
+                    value="Tokens"
+                    disabled={tab === "Tokens"}>
+                    Tokens
             </button>
-            {appState.users && tab === "Users" ?
-                (<Users history= {props.history} users={appState.users} onCreateUser={onCreateUserHandler} />) :
-                (tab === "Log" ?
-                    (<Log log={appState.log} users={appState.users} />) :
-                    (tab === "Tokens" ?
-                        (<AllTokens history={props.history} tokens={appState.userTokens} users={appState.users} />) :
-                        (<div></div>)))}
+                {appState.users && tab === "Users" ?
+                    (<Users history={props.history} users={appState.users} onCreateUser={onCreateUserHandler} />) :
+                    (tab === "Log" ?
+                        (<Log log={appState.log} users={appState.users} />) :
+                        (tab === "Tokens" ?
+                            (<AllTokens history={props.history} tokens={appState.userTokens} users={appState.users} />) :
+                            (<div></div>)))}
 
+            </div>
         </div>
 
     )
