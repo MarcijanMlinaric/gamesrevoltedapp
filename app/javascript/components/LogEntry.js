@@ -8,6 +8,7 @@ function LogEntryComponent(props) {
         <div className={styles.logEntry}>
             <div className={styles.logUser}>{props.user.attributes.username}</div>
             <div className={styles.logAction}>{props.entry.attributes.action}</div>
+            <div className={styles.logTime}>{props.entry.attributes.created_at}</div>
         </div>
     )
 

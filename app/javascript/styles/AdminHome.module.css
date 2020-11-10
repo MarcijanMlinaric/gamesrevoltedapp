@@ -37,7 +37,7 @@
 
 .logEntry {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     border: 1px solid black;
     border-radius: 8px;
     margin: 0 5px;
@@ -52,6 +52,11 @@
 
 .logAction {
     grid-column: 2;
+    font-size: 16px;
+}
+
+.logTime {
+    grid-column: 3;
     font-size: 16px;
 }
 
