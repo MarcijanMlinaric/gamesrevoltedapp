@@ -13,26 +13,27 @@ import { LoginForm } from '../components/LoginForm'
 function AppComponent(props) {
     const { appState } = React.useContext(AppContext);
     const [errors, setErrors] = useState('')
-    
+
+    //redirect after login
     useEffect(() => {
         if (appState.user === 'admin')
-            props.history.push('/admin')        
+            props.history.push('/admin')
         else if (appState.user)
             props.history.push('/user')
     }, [appState.user])
-    
+
     const onLoginButtonHandler = (e) => {
         login(e.target[0].value, e.target[1].value, appState)
-        .catch((resp) => setErrors(resp))
-               
-    } 
+            .catch((resp) => setErrors(resp))
 
-    
+    }
+
+
 
     return (
         <div className={styles.mainDiv}>
-            <LoginForm onLoginButton={onLoginButtonHandler}/>
-            {errors ? 
+            <LoginForm onLoginButton={onLoginButtonHandler} />
+            {errors ?
                 (<div>Invalid credentials</div>) : (<div></div>)}
         </div>
     )

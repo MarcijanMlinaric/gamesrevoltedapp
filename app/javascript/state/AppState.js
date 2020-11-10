@@ -10,15 +10,15 @@ class AppState {
 
 
   constructor() {
-        makeObservable(this, {
-            token: observable,
-            user: observable,
-            userData: observable,
-            users: observable,
-            log: observable,
-            userTokens: observable
-        })
-    }
+    makeObservable(this, {
+      token: observable,
+      user: observable,
+      userData: observable,
+      users: observable,
+      log: observable,
+      userTokens: observable
+    })
+  }
 
   clear() {
     this.token = '';

@@ -16,6 +16,8 @@ function AdminHomeComponent(props) {
     const { appState } = React.useContext(AppContext);
     const [tab, setTab] = useState("Users")
 
+
+    //getting data
     useEffect(() => {
         getUsersAdmin(appState)
         getLog(appState)

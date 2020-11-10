@@ -15,6 +15,7 @@ function UserHomeComponent(props) {
     const [errors, setErrors] = useState('');
 
 
+    //getting data
     useEffect(() => getUser(appState), [])
 
     const onTokenCreateHandler = (e) => {

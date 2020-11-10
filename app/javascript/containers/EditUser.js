@@ -14,6 +14,8 @@ function EditUserComponent(props) {
     const [button, setButton] = useState('Edit')
 
 
+
+    //updating user
     useEffect(() =>
         setUser(appState.users.find(({ id }) => id === props.match.params.id))
         , [])

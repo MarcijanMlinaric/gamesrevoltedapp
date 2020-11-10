@@ -14,6 +14,7 @@ function EditTokenComponent(props) {
     const [date, setDate] = useState('')
     const [button, setButton] = useState('Edit')
 
+    //updating token
     useEffect(() =>
         setToken(appState.userTokens.find(({ id }) => id === props.match.params.id))
         , [])

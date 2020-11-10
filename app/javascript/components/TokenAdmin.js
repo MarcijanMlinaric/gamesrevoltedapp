@@ -6,7 +6,7 @@ function TokenAdminComponent(props) {
 
     const onButtonClick = (e) => {
         e.preventDefault()
-        props.history.push(`/admin/token/${props.token.id}`, {username: props.user.attributes.username})
+        props.history.push(`/admin/token/${props.token.id}`, { username: props.user.attributes.username })
     }
 
 
