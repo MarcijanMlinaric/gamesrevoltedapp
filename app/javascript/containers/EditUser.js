@@ -53,7 +53,7 @@ function EditUserComponent(props) {
                         </form>
                     </div>
                     <AllTokens history={props.history}
-                        tokens={appState.userTokens.filter((token) => token.attributes.user_id = user.id)}
+                        tokens={appState.userTokens.filter((token) => token.attributes.user_id == user.id)}
                         users={appState.users} />
                 </div>
                 ) :
