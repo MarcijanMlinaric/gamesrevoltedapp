@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 import { AppContext } from '../state/AppContext'
 import DateTimePicker from 'react-datetime-picker'
 import patchToken from '../services/patchToken'
+import styles from '../styles/EditToken.module.css'
 
 
 
@@ -23,30 +24,38 @@ function EditTokenComponent(props) {
             setButton('Save')
         } else {
             patchToken(appState, props.history.location.state.username,
-            token.attributes.token, e.target[0].value, date)
+                token.attributes.token, e.target[0].value, date)
             setButton('Edit')
         }
     }
 
     console.log(date)
-    
+
 
     return (
-        <div>
+        <div className={styles.mainDiv}>
             {token ?
-                (<div>
-                    <div>Token:</div>
-                    <div>{token.attributes.token}</div>
-                    <div>Belongs to:</div>
-                    <div>{props.history.location.state.username}</div>
-                    <form onSubmit={onFormSubmit}>
-                        <div>Token value:</div>
-                        <input defaultValue={token.attributes.value} disabled={button==='Edit'} />
-                        <div>Expires on:</div>
-                        <div>{token.attributes.expires}</div>
-                        <DateTimePicker format={"y-MM-dd hh:mm:ss"} disabled={button==='Edit'} onChange={setDate} value={date} />
-                        <button type="submit">{button}</button>
-                    </form></div>
+                (<div className={styles.editTokenContainer}>
+                    <div className={styles.title}>Edit token:</div>
+                    <div className={styles.container}>
+                        <div className={styles.tokenInfo}>
+                            <div className={styles.token}>{token.attributes.token}</div>
+                            <div className={styles.username}>Belongs to: {props.history.location.state.username}</div>
+                        </div>
+                        <form className={styles.editForm} onSubmit={onFormSubmit}>
+                            <div className={styles.valueContainer}>
+                                <div className={styles.label}>Token value:</div>
+                                <input className={styles.formInput} defaultValue={token.attributes.value} disabled={button === 'Edit'} />
+                            </div>
+                            <div className={styles.expiresContainer}>
+                                <div className={styles.label}>Expires on:</div>
+                                <div>{token.attributes.expires}</div>
+                                <DateTimePicker className={styles.formInput} format={"y-MM-dd hh:mm:ss"} disabled={button === 'Edit'} onChange={setDate} value={date} />
+                            </div>
+                            <button className={styles.button} type="submit">{button}</button>
+                        </form>
+                    </div>
+                </div>
                 ) :
                 (<div></div>)}
         </div>

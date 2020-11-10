@@ -4,6 +4,8 @@ import { observer } from 'mobx-react'
 import { AppContext } from '../state/AppContext'
 import { Switch } from 'react-router-dom'
 
+import styles from '../styles/App.module.css'
+
 import login from '../services/login'
 import { LoginForm } from '../components/LoginForm'
 
@@ -28,7 +30,7 @@ function AppComponent(props) {
     
 
     return (
-        <div>
+        <div className={styles.mainDiv}>
             <LoginForm onLoginButton={onLoginButtonHandler}/>
             {errors ? 
                 (<div>Invalid credentials</div>) : (<div></div>)}

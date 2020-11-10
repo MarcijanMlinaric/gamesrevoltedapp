@@ -4,6 +4,7 @@ import { observer } from 'mobx-react'
 import { AppContext } from '../state/AppContext'
 import { AllTokens } from '../components/AllTokens'
 import patchUser from '../services/patchUser'
+import styles from '../styles/EditUser.module.css'
 
 
 
@@ -28,23 +29,29 @@ function EditUserComponent(props) {
         }
     }
 
-   
+
 
     return (
-        <div>
+        <div className={styles.mainDiv}>
             {user ?
-                (<div>
-                    <div>User:</div>
-                    <div>{user.attributes.username}</div>
-                    <form onSubmit={onFormSubmit}>
-                        <div>Number of allowed tokens</div>
-                        <input defaultValue={user.attributes.no_of_tokens} disabled={button === 'Edit'} />
-                        <div>Balance</div>
-                        <input defaultValue={user.attributes.balance} disabled={button === 'Edit'} />
-                        <button type="submit">{button}</button>
-                    </form>
-                    <AllTokens history={props.history} 
-                        tokens={appState.userTokens.filter((token) => token.attributes.user_id = user.id)} 
+                (<div className={styles.editUserContainer}>
+                    <div className={styles.title}>Edit user:</div>
+                    <div className={styles.container}>
+                        <div className={styles.username}>{user.attributes.username}</div>
+                        <form className={styles.editForm} onSubmit={onFormSubmit}>
+                            <div className={styles.tokensContainer}>
+                                <div className={styles.label}>Number of allowed tokens</div>
+                                <input className={styles.formInput} defaultValue={user.attributes.no_of_tokens} disabled={button === 'Edit'} />
+                            </div>
+                            <div className={styles.balanceContainer}>
+                                <div className={styles.label}>Balance</div>
+                                <input className={styles.formInput} defaultValue={user.attributes.balance} disabled={button === 'Edit'} />
+                            </div>
+                            <button className={styles.button} type="submit">{button}</button>
+                        </form>
+                    </div>
+                    <AllTokens history={props.history}
+                        tokens={appState.userTokens.filter((token) => token.attributes.user_id = user.id)}
                         users={appState.users} />
                 </div>
                 ) :
